@@ -16,9 +16,9 @@ const formSubmissionRoutes = require('./api/routes/formSubmission');
 mongoose.set('useCreateIndex', true)
 
 /**Mongoose connect */
-const uri = "mongodb+srv://Nesrine:" +
-    process.env.MONGO_ATLAS_PW + "@cluster0-is3xf.mongodb.net/test?retryWrites=true&w=majority";
-
+// const uri = "mongodb+srv://Nesrine:" +
+//     process.env.MONGO_ATLAS_PW + "@cluster0-is3xf.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb://heroku_hjrd0sp1:bst0fpi51r73rr97v9erjlg7v8@ds151586.mlab.com:51586/heroku_hjrd0sp1" ;
 mongoose.connect(uri, {
         useUnifiedTopology: true,
         useNewUrlParser: true,
