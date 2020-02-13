@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+const checkAuth = require('../middleware/check-auth');
 
 
 const authController = require("../controllers/auth");
@@ -12,4 +13,6 @@ router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 
 //verify token
-router.get('token-verification', checkAuth, authController.verifyToken)
+router.get('/token-verification', checkAuth, authController.verifyToken);
+
+module.exports = router;

@@ -9,11 +9,12 @@ const formRoutes = require('./api/routes/form.js');
 
 // user routes 
 const userRoutes = require('./api/routes/user.js');
+
 // formSubmission routes
 const formSubmissionRoutes = require('./api/routes/formSubmission');
 
 // authentication routes
-const authRoutes = require('./api/routes/auth');
+const authRoutes = require('./api/routes/auth.js');
 
 mongoose.set('useCreateIndex', true)
 
@@ -58,7 +59,7 @@ app.use('/api/v1/forms', formRoutes);
 /** user's routes */
 app.use("/api/v1/users", userRoutes);
 /** authentication routes */
-app.use("/auth", authRoutes);
+app.use('/auth', authRoutes);
 /** formSubmission routes */
 app.use("/api/v1/form-submissions", formSubmissionRoutes);
 
