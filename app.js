@@ -19,8 +19,7 @@ const authRoutes = require('./api/routes/auth');
 mongoose.set('useCreateIndex', true)
 
 /**Mongoose connect */
-const uri = "mongodb+srv://Nesrine:" +
-    process.env.MONGO_ATLAS_PW + "@cluster0-is3xf.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb+srv://Nesrine:Operating01@cluster0-is3xf.mongodb.net/test?retryWrites=true&w=majority";
 
 mongoose.connect(uri, {
         useUnifiedTopology: true,
