@@ -14,7 +14,7 @@ const userRoutes = require('./api/routes/user.js');
 const formSubmissionRoutes = require('./api/routes/formSubmission');
 
 // authentication routes
-const authRoutes = require('./api/routes/auth.js');
+const authRoutes = require('./api/routes/auth');
 
 mongoose.set('useCreateIndex', true)
 
@@ -34,6 +34,7 @@ mongoose.Promise = global.Promise;
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 
 /**handling CORS */
 app.use((req, res, next) => {
@@ -64,11 +65,9 @@ app.use('/auth', authRoutes);
 app.use("/api/v1/form-submissions", formSubmissionRoutes);
 
 
-// front 
-app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/public/views/login.html");
-})
+
 app.use(express.static('public'));
+
 //handling errors 
 app.use((req, res, next) => {
     const error = new Error('Not found ! ');
