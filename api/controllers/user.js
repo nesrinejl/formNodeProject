@@ -48,26 +48,22 @@ exports.update_token = (req, res, next) => {
 };
 
 // get user by email
-exports.getUserByEmail = (req, res, next) => {
-    const email = req.params.email;
-    console.log(email);
-    User.findOne({ email: email })
+exports.getUserByEmail = (req, res) => {
+
+    User.find({ email: req.query.email })
         .exec()
-        .then(
-            user => {
-                console.log(user);
-                if (!user) {
-                    return res.status(404).json({
-                        message: "user not found !",
-                    })
+        .then(user => {
 
-                }
-                res.status(200).json({
-                    user: user,
-
-                });
+            if (!user) {
+                return res.status(404).json({
+                    message: "User not found !",
+                })
             }
-        )
+            return res.status(200).json({
+
+                user: user
+            });
+        })
         .catch(err => {
             console.log(err);
             res.status(500).json({
