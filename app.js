@@ -2,12 +2,18 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-
-
-const formRoutes = require('./api/routes/form.js');
-const formModels = require('./api/models/form');
-
 const mongoose = require("mongoose");
+
+// form routes
+const formRoutes = require('./api/routes/form.js');
+
+// user routes 
+const userRoutes = require('./api/routes/user.js');
+// formSubmission routes
+const formSubmissionRoutes = require('./api/routes/formSubmission');
+
+
+mongoose.set('useCreateIndex', true)
 
 /**Mongoose connect */
 const uri = "mongodb+srv://Nesrine:" +
@@ -21,6 +27,7 @@ mongoose.connect(uri, {
     .catch(err => {
         console.log("DB Connection Error:" + err.message);
     });
+mongoose.Promise = global.Promise;
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -40,12 +47,25 @@ app.use((req, res, next) => {
 
 });
 
-// routes
+// ROUTES
+
+
 /** form's routes **/
 app.use('/forms', formRoutes);
 
-/**handling errors */
+/** user's routes */
+app.use("/users", userRoutes);
 
+/** formSubmission routes */
+app.use("/form-submissions", formSubmissionRoutes);
+
+
+// front 
+app.get("/", function(req, res) {
+    res.sendFile(__dirname + "/public/views/login.html");
+})
+app.use(express.static('public'));
+//handling errors 
 app.use((req, res, next) => {
     const error = new Error('Not found ! ');
     error.status = 404;
