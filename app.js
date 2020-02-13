@@ -12,12 +12,14 @@ const userRoutes = require('./api/routes/user.js');
 // formSubmission routes
 const formSubmissionRoutes = require('./api/routes/formSubmission');
 
+// authentication routes
+const authRoutes = require('./api/routes/auth');
 
 mongoose.set('useCreateIndex', true)
 
 /**Mongoose connect */
 const uri = "mongodb+srv://Nesrine:" +
-   process.env.MONGO_ATLAS_PW + "@cluster0-is3xf.mongodb.net/test?retryWrites=true&w=majority";
+    process.env.MONGO_ATLAS_PW + "@cluster0-is3xf.mongodb.net/test?retryWrites=true&w=majority";
 
 mongoose.connect(uri, {
         useUnifiedTopology: true,
@@ -51,13 +53,14 @@ app.use((req, res, next) => {
 
 
 /** form's routes **/
-app.use('/forms', formRoutes);
+app.use('/api/v1/forms', formRoutes);
 
 /** user's routes */
-app.use("/users", userRoutes);
-
+app.use("/api/v1/users", userRoutes);
+/** authentication routes */
+app.use("/auth", authRoutes);
 /** formSubmission routes */
-app.use("/form-submissions", formSubmissionRoutes);
+app.use("/api/v1/form-submissions", formSubmissionRoutes);
 
 
 // front 
