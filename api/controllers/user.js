@@ -59,10 +59,10 @@ exports.getUserByEmail = (req, res) => {
                     message: "User not found !",
                 })
             }
-            return res.status(200).json({
+            return res.status(200).json(
 
-                user: user
-            });
+                user[0]
+            );
         })
         .catch(err => {
             console.log(err);
