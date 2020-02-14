@@ -7,7 +7,7 @@ const formControllers = require("../controllers/form");
 const Form = require('../models/form');
 
 // get request
-router.get('/', checkAuth, formControllers.forms_get_all);
+//router.get('/', checkAuth, formControllers.forms_get_all);
 
 // post request 
 router.post('/', checkAuth, formControllers.forms_create_form);

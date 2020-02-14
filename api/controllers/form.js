@@ -5,7 +5,7 @@ const Form = require("../models/form");
 const FormSubmission = require('../models/formSubmission');
 
 // get all forms
-exports.forms_get_all = (req, res, next) => {
+/*exports.forms_get_all = (req, res, next) => {
     Form.find()
         .select('nameForm description questions user timestamp _id')
         .exec()
@@ -39,7 +39,7 @@ exports.forms_get_all = (req, res, next) => {
             }
         );
 };
-
+*/
 // create form 
 exports.forms_create_form = (req, res, next) => {
 
@@ -105,22 +105,19 @@ exports.forms_get_form = (req, res, next) => {
 // get forms by user Id
 exports.getFormsByUserId = (req, res) => {
     const userId = req.query.userId;
-
-    Form.find(userId)
+    console.log(userId);
+    Form.find({ user: userId })
         .select("nameForm description questions user timestamp _id")
         .exec()
         .then(forms => {
-
             if (!forms) {
                 return res.status(404).json({
                     message: "Form not found !",
                 })
-
             }
             res.status(200).json(
-                forms,
+                forms
             );
-
         })
         .catch(
             err => {
