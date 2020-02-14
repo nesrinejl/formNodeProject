@@ -37,7 +37,7 @@ exports.update_token = (req, res, next) => {
         token: token
     }).then(user => {
         return res.status(200).json(
-            user[0]
+            user
         );
     }).catch(err => {
         console.log(err);

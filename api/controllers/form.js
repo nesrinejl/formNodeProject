@@ -101,6 +101,35 @@ exports.forms_get_form = (req, res, next) => {
             });
 }
 
+// get forms by user Id
+exports.getFormsByUserId = (req, res, next) => {
+    const userId = req.query.userId;
+
+    Form.find(userId)
+        .select("nameForm description questions user timestamp _id")
+        .exec()
+        .then(forms => {
+
+            if (!forms) {
+                return res.status(404).json({
+                    message: "Form not found !",
+                })
+
+            }
+            res.status(200).json(
+                forms,
+            );
+
+        })
+        .catch(
+            err => {
+                console.log(err);
+                res.status(500).json({ error: err });
+            });
+}
+
+
+
 // delete form
 exports.forms_delete_form = (req, res, next) => {
     const id = req.params.formId;
