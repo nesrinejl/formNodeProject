@@ -58,6 +58,7 @@ exports.forms_create_form = (req, res, next) => {
                     name: result.nameForm,
                     description: result.description,
                     questions: result.questions,
+                    user: result.user,
                     _id: result._id,
                     request: {
                         type: 'GET',
@@ -102,7 +103,7 @@ exports.forms_get_form = (req, res, next) => {
 }
 
 // get forms by user Id
-exports.getFormsByUserId = (req, res, next) => {
+exports.getFormsByUserId = (req, res) => {
     const userId = req.query.userId;
 
     Form.find(userId)
