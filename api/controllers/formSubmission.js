@@ -107,7 +107,40 @@ exports.formSubmissions_post_responses = (req, res, next) => {
                 console.log(err);
                 res.status(500).json({ error: err });
             });
-}
+};
+
+// get submitted forms by userId 
+exports.getSubmittedFormByUserId = (req, res) => {
+    console.log('ok');
+    const userId = req.query.userId;
+
+    FormSubmission.find({ user: userId })
+        .exec()
+        .then(
+            formSubmissions => {
+
+                var formIds = formSubmissions.map((formSubmission) => formSubmission.form);
+                console.log(formIds.length);
+                //var submittedForms = [];
+                Form.find({
+                        '_id': { $in: formIds }
+                    })
+                    .exec()
+                    .then(
+                        submittedForms => {
+                            res.status(200).json(submittedForms);
+                        }
+                    )
+                    .catch();
+            }
+        )
+        .catch(
+            err => {
+                console.log(err);
+                res.status(500).json({ error: err });
+            });
+};
+
 
 // update responses
 

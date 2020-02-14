@@ -34,7 +34,10 @@ router.delete('/:formId/questions/:questionId', checkAuth, formControllers.quest
 router.patch('/:formId/questions/:questionId', checkAuth, formControllers.questions_update_question);
 
 // get form by user Id 
-router.get('/', checkAuth, formControllers.getFormsByUserId);
+router.get('/users', checkAuth, formControllers.getFormsByUserId);
+
+// get submittedForms by userId
+//router.get('/submitted/', checkAuth, formControllers.getSubmittedFormsByUserId);
 
 // stat
 router.get('/:formId/statistics', checkAuth, formControllers.form_stat);

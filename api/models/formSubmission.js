@@ -6,7 +6,7 @@ const responseSchema = mongoose.Schema({
     content: {
         type: String,
     },
-    ResponseType: {
+    responseType: {
         type: String,
         enum: ["QCM", "normal"],
         required: true
