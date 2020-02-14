@@ -89,13 +89,9 @@ exports.forms_get_form = (req, res, next) => {
                 })
 
             }
-            res.status(200).json({
-                form: form,
-                request: {
-                    type: 'GET',
-                    url: 'http://localhost:3000/forms'
-                }
-            });
+            res.status(200).json(
+                form,
+            );
 
         })
         .catch(
@@ -168,13 +164,10 @@ exports.questions_get_all = (req, res, next) => {
                 })
 
             }
-            res.status(200).json({
-                questions: questions,
-                request: {
-                    type: 'GET',
-                    url: 'http://localhost:3000/forms'
-                }
-            });
+            res.status(200).json(
+                questions
+
+            );
 
         })
 

@@ -22,30 +22,20 @@ exports.formSubmission_create = (req, res, next) => {
                 .then(
                     form => {
                         console.log(form.questions);
-
-                        /* for (let i = 0; i < form.questions.length; i++) {
-                             for (let j = 0; j < result.responses.length; j++) {
-                                 if (result.responses[j].question == form.questions[i]._id) {
-                                     res.status(201).json({
-                                         message: "formSubmission created successfully",
-                                         createdFormSubmission: {
-                                             formId: result.formId,
-                                             userId: result.userId,
-                                             responses: result.responses,
-                                             _id: result._id,
-                                             request: {
-                                                 type: 'GET',
-                                                 url: 'http://localhost:3000/form-submissions/' + result._id
-                                             }
-                                         },
-                                     })
-                                 }
-                             }
-
-                         }*/
-
+                        res.status(201).json({
+                            message: "formSubmission created successfully",
+                            createdFormSubmission: {
+                                formId: result.formId,
+                                userId: result.userId,
+                                responses: result.responses,
+                                _id: result._id,
+                                request: {
+                                    type: 'GET',
+                                    url: 'http://localhost:3000/form-submissions/' + result._id
+                                }
+                            },
+                        })
                     }
-
                 )
                 .catch(err => {
                     console.log(err);
@@ -54,9 +44,6 @@ exports.formSubmission_create = (req, res, next) => {
                         error: err
                     })
                 });
-
-
-
         })
         .catch(
             err => {
@@ -65,8 +52,6 @@ exports.formSubmission_create = (req, res, next) => {
                     error: err
                 })
             });
-
-
 };
 
 
@@ -87,13 +72,7 @@ exports.formSubmissions_get_formSubmission = (req, res, next) => {
                 })
 
             }
-            res.status(200).json({
-                formSubmission: formSubmission,
-                request: {
-                    type: 'GET',
-                    url: 'http://localhost:3000/form-submissions'
-                }
-            });
+            res.status(200).json(formSubmission);
 
         })
         .catch(
