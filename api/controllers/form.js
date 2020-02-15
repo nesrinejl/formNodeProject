@@ -341,12 +341,19 @@ exports.form_stat = (req, res, next) => {
                     .exec()
                     .then(
                         formSubmissions => {
+                            //   form['formSubmissionsCount'] = formSubmissions.length;
+
                             var formStatistic = {};
                             formStatistic.questions = [];
-
-
+                            formStatistic._id = form._id;
+                            formStatistic.nameForm = form.nameForm;
+                            formStatistic.description = form.description;
+                            formStatistic.user = form.user;
+                            formStatistic.createdAt = formStatistic.createdAt;
+                            formStatistic.updatedAt = formStatistic.updatedAt;
+                            formStatistic.formSubmissionsCount = formSubmissions.length;
                             // var form = {...form }._doc;
-                            console.log(form);
+                            // console.log(form);
                             for (let i = 0; i < form.questions.length; i++) {
 
                                 if (form.questions[i].questionType == "normal") {
@@ -362,12 +369,14 @@ exports.form_stat = (req, res, next) => {
                                             responses.push(response.content);
                                         }
                                     };
-                                    console.log(responses);
-                                    //  form.questions[i].responses = responses;
+                                    //console.log(responses);
+                                    // form.questions[i]['responses'] = responses;
                                     formStatistic.questions.push({
                                         _id: form.questions[i]._id,
                                         responses: responses,
-                                        choices: []
+                                        content: form.questions[i].content,
+                                        questionType: form.questions[i].questionType
+                                            //  choices: []
 
                                     });
 
@@ -391,30 +400,27 @@ exports.form_stat = (req, res, next) => {
                                             }
 
                                         }
-                                        console.log(choiceCount);
-                                        //form.questions[i].choices[j].choiceCount = choiceCount;
+                                        // console.log(choiceCount);
+                                        //form.questions[i].choices[j]['choiceCount'] = choiceCount;
                                         // form.questions[i].choices[j] = {...form.questions[i].choices[j], choiceCount: choiceCount };
                                         choices.push({
                                             _id: form.questions[i].choices[j]._id,
+                                            choiceContent: form.questions[i].choices[j].choiceContent,
                                             choiceCount: choiceCount
                                         });
                                     }
                                     formStatistic.questions.push({
                                         _id: form.questions[i]._id,
-                                        responses: [],
+                                        //responses: [],
+                                        content: form.questions[i].content,
+                                        questionType: form.questions[i].questionType,
                                         choices: choices
                                     });
 
                                 }
 
                             };
-                            res.status(200).json({
-                                form: formStatistic,
-                                request: {
-                                    type: 'GET',
-                                    url: 'http://localhost:3000/forms'
-                                }
-                            });
+                            res.status(200).json(formStatistic);
                         }
 
 
@@ -438,7 +444,7 @@ exports.form_stat = (req, res, next) => {
 
 
 //stats 2
-exports.form_stats = (req, res, next) => {
+/*exports.form_stats = (req, res, next) => {
     formId = req.params.formId;
 
     Form.findById(formId)
@@ -522,4 +528,4 @@ exports.form_stats = (req, res, next) => {
                 console.log(err);
                 res.status(500).json({ error: err });
             });
-}
+}*/

@@ -43,5 +43,5 @@ router.get('/users', checkAuth, formControllers.getFormsByUserId);
 router.get('/:formId/statistics', checkAuth, formControllers.form_stat);
 
 //stat 2
-router.get('/:formId/statisticss', checkAuth, formControllers.form_stats);
+//router.get('/:formId/statisticss', checkAuth, formControllers.form_stats);
 module.exports = router;
