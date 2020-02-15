@@ -33,8 +33,8 @@ router.delete('/:formId/questions/:questionId', checkAuth, formControllers.quest
 // update question
 router.patch('/:formId/questions/:questionId', checkAuth, formControllers.questions_update_question);
 
-// get form by user Id 
-router.get('/users', checkAuth, formControllers.getFormsByUserId);
+// get forms by user Id 
+router.get('/', checkAuth, formControllers.getFormsByUserId);
 
 // get submittedForms by userId
 //router.get('/submitted/', checkAuth, formControllers.getSubmittedFormsByUserId);

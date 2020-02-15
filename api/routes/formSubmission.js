@@ -18,6 +18,7 @@ router.get('/', formSubmissionControllers.formSubmissions_get_formSubmission);
 // post a response 
 router.post('/:formSubmissionId/responses', checkAuth, formSubmissionControllers.formSubmissions_post_responses);
 
+//get submitted forms by userId
 router.get('/submitted', checkAuth, formSubmissionControllers.getSubmittedFormByUserId);
 
 // patch request update response
