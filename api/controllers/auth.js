@@ -98,9 +98,6 @@ exports.login = (req, res, next) => {
 
 
 // verify token
-exports.verifyToken = (req, res, next) => {
-    return res.status(200).json({
-        message: 'ok',
-
-    });
+exports.verifyToken = (res) => {
+    return res.status(200);
 }

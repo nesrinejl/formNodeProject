@@ -31,6 +31,10 @@ const formSchema = mongoose.Schema({
     nameForm: { type: String, required: true },
     description: { type: String, required: true },
     questions: [questionSchema],
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    }
 
 
 }, { timestamps: true });
