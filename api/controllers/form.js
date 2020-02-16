@@ -47,7 +47,7 @@ exports.forms_create_form = (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         nameForm: req.body.nameForm,
         description: req.body.description,
-
+        user: req.body.user,
         questions: req.body.questions,
     });
     form.save()
